@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+	    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+        }
+
+        #beer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+}
+	h1 {
+	font-size: 3em;
+	text-align: right;
+
+        }
+    </style>
+    <title>Game: Catch the Beer</title>
+</head>
+<body>
+<h1>Barborka - swieto gornikow i piwa</h1>
+<h1> prosze zlapac kamilem piwo</h1>
+<audio controls autoplay>
+ <source src="piwo.mp3" type="audio/mpeg">
+</audio>
+
+    <img id="beer" src="gifpiwo.gif" alt="Beer" width="50" height="50">
+
+    <script>
+        const beer = document.getElementById('beer');
+        let score = 0;
+
+        beer.addEventListener('mouseover', () => {
+            score++;
+            updateScore();
+            moveBeer();
+        });
+
+        function moveBeer() {
+            const maxX = window.innerWidth - beer.clientWidth;
+            const maxY = window.innerHeight - beer.clientHeight;
+
+            const newX = Math.floor(Math.random() * maxX);
+            const newY = Math.floor(Math.random() * maxY);
+
+            beer.style.left = newX + 'px';
+            beer.style.top = newY + 'px';
+        }
+
+        function updateScore() {
+            document.title = `Score: ${score}`;
+        }
+    </script>
+
+<style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #followingImage {
+            position: absolute;
+            pointer-events: none;
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+    <title>Image Following Cursor</title>
+</head>
+<body>
+
+    <img id="followingImage" src="kamil.jpg" alt="Following Image" width="50" height="50">
+
+    <script>
+        const followingImage = document.getElementById('followingImage');
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX - followingImage.width / 2;
+            const y = event.clientY - followingImage.height / 2;
+
+            followingImage.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+
+</body>
+</html>
+ 
